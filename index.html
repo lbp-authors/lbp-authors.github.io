@@ -5,6 +5,8 @@
 <head>
   <title>Efficient Robotic Policy Learning via Latent Space Backward Planning</title>
   
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <style>
         .hidden {
             display: none;
@@ -45,7 +47,7 @@
 
             <br>
             <h1 class="title is-1 publication-title is-bold">
-                Efficient Robotic Policy Learning via <br><u><b>L</b></u>Space <u><b>B</b></u>ackward <u><b>P</b></u>lanning
+                Efficient Robotic Policy Learning via <br><u><b>L</b></u>atent Space <u><b>B</b></u>ackward <u><b>P</b></u>lanning
             </h1>
             <br>
             <h3 class="subtitle is-4 is-bold">
@@ -208,6 +210,7 @@
               </div>
               <p style="text-align: left;">
                 <i>Figure 4.</i> <b>Real-world main results.</b> We evaluate LCBC, GLCBC, SuSIE and LBP in aforementioned 4 tasks. 
+                For each task, we present the average performance of last-3 checkpoints.
                 The metric "Avg. Score" measures the average score for each stage. 
                 We observe that while LBP slightly outperforms other strong baselines at the early stages, 
                 LBP wins by a fairly large margin at the final stages of all tasks.
@@ -215,6 +218,21 @@
             </p>
             <br>
             <br>
+            <div class="column">
+                <h3 style="text-align: center" class="title is-3">Comparison to forward planning</h3>
+                <div class="content has-text-justified">
+                    <p style="text-align: left;">
+                        To verify the effectiveness of the backward planning approach, we train conventional forward planners \( f(z_{t+k}|z_t,\phi_l) \) and \( f(z_{t+nk}|z_t,z_{t+(n-1)k},\phi_l), n=2,\cdots \) with the same network architecture for fair comparison. While our planners progressively predict subgoals \( z_{g}, w_1, w_2, \dots, w_n \) in a backward manner, the forward planners predict the subgoal \( k=10 \) steps ahead at a time, sequentially generating latent subgoals \( z_{10}, z_{20}, \dots,z_{10n} \). We randomly sample one trajectory from each real-world AIRBOT task and calculate the Mean Squared Error (MSE) between the predicted subgoals and their corresponding ground truths for both planners as presented in Figure 5.
+                    </p><br>
+                    <img src="./assets/web/forward_error.png" alt="algebraic reasoning" class="center" style="width: 100%;">
+                    <p style="text-align: left;">
+                        <i>Figure 5.</i> Mean Squared Errors (MSE) between predicted subgoals and corresponding ground truths in forward and backward planning.
+                    </p>
+                </div>
+                </div>
+            <br>
+            <br>
+            <h3 style="text-align: center" class="title is-3">Raw video of long horizon task performance</h3>
             <div class="column">
                 <h3 style="text-align: center" class="title is-4">Stack 3 cups</h3>
                 <div class="content has-text-justified">
@@ -289,6 +307,12 @@
                                             type="video/mp4">
                                 </video>
                             <br><br>
+                            </div>
+
+        
+
+                            <div>
+
                             </div>
         </div>
         </div>
