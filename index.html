@@ -181,6 +181,68 @@
           </div></div></div></div></div>
 </section>
 
+<style>
+    .expandable-container {
+        margin: 20px;
+    }
+
+    .title-container {
+        display: flex;
+        align-items: center;
+        cursor: pointer; /* 鼠标悬停时显示为可点击 */
+    }
+
+    .title-container::before {
+        content: "";
+        display: inline-block;
+        width: 0;
+        height: 0;
+        border-top: 10px solid transparent;
+        border-bottom: 10px solid transparent;
+        border-left: 15px solid #2e6aff; /* 初始向右的三角形 */
+        margin-right: 10px;
+        transition: transform 0.3s ease; /* 平滑过渡 */
+    }
+
+    .title-container.expanded::before {
+        transform: rotate(90deg); /* 展开时旋转为向下的三角形 */
+    }
+
+    .content {
+        display: block;
+        margin-top: 10px;
+        border-radius: 5px;
+    }
+
+    .content.visible {
+        display: block; /* 显示内容 */
+    }
+
+    .hidden_content {
+        display: none;
+        margin-top: 10px;
+        border-radius: 5px;
+    }
+
+    .hidden_content.visible {
+        display: block; /* 显示内容 */
+    }
+
+</style>
+
+<script>
+    function toggleContent(contentId, titleId) {
+        const content = document.getElementById(contentId);
+        const titleContainer = document.getElementById(titleId);
+
+        // 切换内容显示/隐藏
+        content.classList.toggle('visible');
+
+        // 切换三角形方向
+        titleContainer.classList.toggle('expanded');
+    }
+</script>
+
 
 <section class="section">
     <div class="container">
@@ -188,54 +250,62 @@
         <div class="column is-four-fifths">
             <h1 class="title is-2">Real world experiments</h1>
             <br>
-            <p style="text-align: left;">
-                To investigate the effectiveness of LBP in real world, we specifically design four long-horizon tasks: <b>Stack 3 cups</b>, <b>Move cups</b>, <b>Stack 4 cups</b> and <b>Shift cups</b>. 
-                Each task is decomposed into multiple sequential stages, as shown in Figure 3, requiring the robot to perform fundamental pick-and-place operations. 
-                These tasks establish a critical dependency where progress in subsequent stages is contingent on successful execution of preceding ones.
-                We assess task performance using a stage-based scoring system with discrete values <b>{0, 25, 50, 75, 100}</b> for each stage, where each score corresponds to the completion progress of the current stage.
-                A stage is assigned <b>100</b> only upon successful completion of the entire stage. In Figure 4, we present the quantitative comparison on the real-world tasks.</p>
-            <br>
-            <div class="content has-text-centered">
-                <img src="./assets/web/lbp_setting.png" alt="algebraic reasoning" class="center" style="width: 100%;">
-              </div>
-            <p style="text-align: left;">
-                <i>Figure 3.</i> <b>Left:</b> the entire desktop environment setups of real-world experiments contains a 6 DoF AIRBOT arm and three Logitech cameras with different views; 
-                <b>Right:</b> (1) <i>Move cups</i> move both brown cups in front of the white ones; 
-                (2) <i>Stack cups:</i> stack all paper cups together;
-                (3) <i>Shift cups:</i> shift all the paper cups to another plate, in a clockwise direction.
-            </p>
-            <br>
-            <div class="content has-text-centered">
-                <img src="./assets/web/lbp_real.png" alt="algebraic reasoning" class="center" style="width: 100%;">
-              </div>
-              <p style="text-align: left;">
-                <i>Figure 4.</i> <b>Real-world main results.</b> We evaluate LCBC, GLCBC, SuSIE and LBP in aforementioned 4 tasks. 
-                For each task, we present the average performance of last-3 checkpoints.
-                The metric "Avg. Score" measures the average score for each stage. 
-                We observe that while LBP slightly outperforms other strong baselines at the early stages, 
-                LBP wins by a fairly large margin at the final stages of all tasks.
-                 This shows LBP significantly excels in handling long-horizon tasks.
-            </p>
-            <br>
-            <br>
-            <div class="column">
-                <h3 style="text-align: center" class="title is-3">Comparison to forward planning</h3>
-                <div class="content has-text-justified">
+
+            <div class="expandable-container">
+                <div class="title-container" onclick="toggleContent('content1', 'title1')" id="title1">
+                    <h2 class="title is-3">Experimental setup and task definitions</h2>
+                </div>
+                <div class="hidden_content" id="content1">
+
                     <p style="text-align: left;">
-                        To verify the effectiveness of the backward planning approach, we train conventional forward planners \( f(z_{t+k}|z_t,\phi_l) \) and \( f(z_{t+nk}|z_t,z_{t+(n-1)k},\phi_l), n=2,\cdots \) with the same network architecture for fair comparison. While our planners progressively predict subgoals \( z_{g}, w_1, w_2, \dots, w_n \) in a backward manner, the forward planners predict the subgoal \( k=10 \) steps ahead at a time, sequentially generating latent subgoals \( z_{10}, z_{20}, \dots,z_{10n} \). We randomly sample one trajectory from each real-world AIRBOT task and calculate the Mean Squared Error (MSE) between the predicted subgoals and their corresponding ground truths for both planners as presented in Figure 5.
-                    </p><br>
-                    <img src="./assets/web/forward_error.png" alt="algebraic reasoning" class="center" style="width: 100%;">
+                        To investigate the effectiveness of LBP in real world, we specifically design four long-horizon tasks: <b>Stack 3 cups</b>, <b>Move cups</b>, <b>Stack 4 cups</b> and <b>Shift cups</b>. 
+                        Each task is decomposed into multiple sequential stages, as shown in Figure 3, requiring the robot to perform fundamental pick-and-place operations. 
+                        These tasks establish a critical dependency where progress in subsequent stages is contingent on successful execution of preceding ones.
+                        We assess task performance using a stage-based scoring system with discrete values <b>{0, 25, 50, 75, 100}</b> for each stage, where each score corresponds to the completion progress of the current stage.
+                        A stage is assigned <b>100</b> only upon successful completion of the entire stage. In Figure 4, we present the quantitative comparison on the real-world tasks.</p>
+                    <br>
+                        <img src="./assets/web/lbp_setting.png" alt="algebraic reasoning" class="center" style="width: 100%;">
                     <p style="text-align: left;">
-                        <i>Figure 5.</i> Mean Squared Errors (MSE) between predicted subgoals and corresponding ground truths in forward and backward planning.
+                        <i>Figure 3.</i> <b>Left:</b> the entire desktop environment setups of real-world experiments contains a 6 DoF AIRBOT arm and three Logitech cameras with different views; 
+                        <b>Right:</b> (1) <i>Move cups</i> move both brown cups in front of the white ones; 
+                        (2) <i>Stack cups:</i> stack all paper cups together;
+                        (3) <i>Shift cups:</i> shift all the paper cups to another plate, in a clockwise direction.
                     </p>
                     <br>
-                    <p style="text-align: left;">
-                        It can be observed that the compounding errors of forward planning grow rapidly across all tasks; for the most challenging task "Shift cups", the error becomes unbearable when predicting distant subgoals. 
-                        Even more concerning is that some existing methods attempt to predict continuous frames of future images, which would exacerbate these issues further.
-                        In contrast, our method maintains an extremely low error throughout the entire planning horizon. These results highlight the advantage of our backward planning strategy, which enables accurate subgoal predictions using only a few subgoals throughout the entire trajectory. LBP not only ensures efficient prediction but also effectively reduces compounding errors, in contrast to forward planning, which requires many predictions and suffers from significant accumulated errors.
-                    <br>
+                        <img src="./assets/web/lbp_real.png" alt="algebraic reasoning" class="center" style="width: 100%;">
+                      <p style="text-align: left;">
+                        <i>Figure 4.</i> <b>Real-world main results.</b> We evaluate LCBC, GLCBC, SuSIE and LBP in aforementioned 4 tasks. 
+                        For each task, we present the average performance of last-3 checkpoints.
+                        The metric "Avg. Score" measures the average score for each stage. 
+                        We observe that while LBP slightly outperforms other strong baselines at the early stages, 
+                        LBP wins by a fairly large margin at the final stages of all tasks.
+                         This shows LBP significantly excels in handling long-horizon tasks.
+                    </p>
                 </div>
+            </div>
+        
+
+            <div class="expandable-container">
+                <div class="title-container" onclick="toggleContent('content2', 'title2')" id="title2">
+                    <h2 class="title is-3">Comparison to forward planning</h2>
                 </div>
+                <div class="hidden_content" id="content2">
+                        <p style="text-align: left;">
+                            To verify the effectiveness of the backward planning approach, we train conventional forward planners \( f(z_{t+k}|z_t,\phi_l) \) and \( f(z_{t+nk}|z_t,z_{t+(n-1)k},\phi_l), n=2,\cdots \) with the same network architecture for fair comparison. While our planners progressively predict subgoals \( z_{g}, w_1, w_2, \dots, w_n \) in a backward manner, the forward planners predict the subgoal \( k=10 \) steps ahead at a time, sequentially generating latent subgoals \( z_{10}, z_{20}, \dots,z_{10n} \). We randomly sample one trajectory from each real-world AIRBOT task and calculate the Mean Squared Error (MSE) between the predicted subgoals and their corresponding ground truths for both planners as presented in Figure 5.
+                        </p><br>
+                        <img src="./assets/web/forward_error.png" alt="algebraic reasoning" class="center" style="width: 100%;">
+                        <p style="text-align: left;">
+                            <i>Figure 5.</i> Mean Squared Errors (MSE) between predicted subgoals and corresponding ground truths in forward and backward planning.
+                        </p>
+                        <br>
+                        <p style="text-align: left;">
+                            It can be observed that the compounding errors of forward planning grow rapidly across all tasks; for the most challenging task "Shift cups", the error becomes unbearable when predicting distant subgoals. 
+                            Even more concerning is that some existing methods attempt to predict continuous frames of future images, which would exacerbate these issues further.
+                            In contrast, our method maintains an extremely low error throughout the entire planning horizon. These results highlight the advantage of our backward planning strategy, which enables accurate subgoal predictions using only a few subgoals throughout the entire trajectory. LBP not only ensures efficient prediction but also effectively reduces compounding errors, in contrast to forward planning, which requires many predictions and suffers from significant accumulated errors.
+                        <br>
+                </div>
+            </div>
+
             <br>
             <br>
             <h3 style="text-align: center" class="title is-3">Raw video of long horizon task performance</h3>
