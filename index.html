@@ -162,10 +162,8 @@
                 </video>
             <br><br>
             </div>
-            
-        <div class="title-container" onclick="toggleContent('content2', 'title2')" id="title2">
-            <h2 class="title is-3">Comparison to forward planning</h2>
-        </div>
+
+        <h3 style="text-align: center" class="title is-3">Comparison to <u>forward planning</u></h3>
         <div class="hidden_content" id="content2">
                 <p style="text-align: left;">
                     To verify the effectiveness of the backward planning approach, we train conventional forward planners \( f(z_{t+k}|z_t,\phi_l) \) and \( f(z_{t+nk}|z_t,z_{t+(n-1)k},\phi_l), n=2,\cdots \) with the same network architecture for fair comparison. While our planners progressively predict subgoals \( z_{g}, w_1, w_2, \dots, w_n \) in a backward manner, the forward planners predict the subgoal \( k=10 \) steps ahead at a time, sequentially generating latent subgoals \( z_{10}, z_{20}, \dots,z_{10n} \). We randomly sample one trajectory from each real-world AIRBOT task and calculate the Mean Squared Error (MSE) between the predicted subgoals and their corresponding ground truths for both planners as presented in Figure 5.
