@@ -127,7 +127,7 @@
         <h3 style="text-align: center" class="title is-3">Comparison to <u>forward planning</u></h3>
         <div class="hidden_content" id="content2">
                 <p style="text-align: left;">
-                    To verify the effectiveness of the backward planning approach, we train conventional forward planners \( f(z_{t+k}|z_t,\phi_l) \) with the same network architecture for fair comparison. While our planners progressively predict subgoals \( z_{g}, w_1, w_2, \dots, w_n \) in a backward manner, the forward planner predict the subgoal 10 steps ahead. At each step, the forward planner autoregressively generates latent subgoals. We randomly sample 3000 data points as the current state from our real-robot datasets and compute the mean square errors (MSE) between predicted subgoals and their corresponding groundtruths. 
+                    To verify the effectiveness of the backward planning approach, we train conventional forward planners \( f(z_{t+k}|z_t,\phi_l) \) with the same network architecture for fair comparison. While our planners progressively predict subgoals \( z_{g}, w_1, w_2, \dots, w_n \) in a backward manner, the forward planner predict the subgoal 10 steps ahead. At each step, the forward planner autoregressively generates latent subgoals. We randomly sample 3000 data points as the current state from our real-robot datasets and compute the mean square errors (MSE) between predicted subgoals and their corresponding groundtruths. The results are visualized as follows, with normalized task progress on the x-axis. 
                 </p><br>
                 <img src="./assets/web/forward_error_2.png" alt="algebraic reasoning" class="center" style="width: 100%;">
                 <p style="text-align: left;">
