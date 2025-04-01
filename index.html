@@ -123,7 +123,25 @@
     <div class="columns is-centered has-text-centered">
         <div class="column is-four-fifths">
         <h1 class="title is-2"><span style="margin-right: 5px;">📢</span><span style="color: #ff0000;">Update</span></h1>
-        
+
+        <h3 style="text-align: center" class="title is-3">Comparison to <u>forward planning</u></h3>
+        <div class="hidden_content" id="content2">
+                <p style="text-align: left;">
+                    To verify the effectiveness of the backward planning approach, we train conventional forward planners \( f(z_{t+k}|z_t,\phi_l) \) with the same network architecture for fair comparison. While our planners progressively predict subgoals \( z_{g}, w_1, w_2, \dots, w_n \) in a backward manner, the forward planner predict the subgoal 10 steps ahead. At each step, the forward planner autoregressively generates latent subgoals. We randomly sample 3000 data points as the current state from our real-robot datasets and compute the mean square errors (MSE) between predicted subgoals and their corresponding groundtruths. 
+                </p><br>
+                <img src="./assets/web/forward_error_2.png" alt="algebraic reasoning" class="center" style="width: 100%;">
+                <p style="text-align: left;">
+                    <i>Figure 5.</i> Mean Squared Errors (MSE) between predicted subgoals and corresponding ground truths in forward and backward planning.
+                </p>
+                <br>
+                <p style="text-align: left;">
+                    It can be observed that the compounding errors of forward planning grow rapidly across all tasks; for the most challenging task "Shift cups", the error becomes unbearable when predicting distant subgoals. 
+                    Even more concerning is that some existing methods attempt to predict continuous frames of future images, which would exacerbate these issues further.
+                    In contrast, our method maintains an extremely low error throughout the entire planning horizon. These results highlight the advantage of our backward planning strategy, which enables accurate subgoal predictions using only a few subgoals throughout the entire trajectory. LBP not only ensures efficient prediction but also effectively reduces compounding errors, in contrast to forward planning, which requires many predictions and suffers from significant accumulated errors.
+                <br>
+        </div>
+
+          
         <h3 style="text-align: center" class="title is-3"><u>Raw</u> video of generalization expirements</h3>
         <div class="column">
             <h3 style="text-align: center" class="title is-4"><b>different <u>backgrounds</u></b></h3>
@@ -162,23 +180,6 @@
                 </video>
             <br><br>
             </div>
-
-        <h3 style="text-align: center" class="title is-3">Comparison to <u>forward planning</u></h3>
-        <div class="hidden_content" id="content2">
-                <p style="text-align: left;">
-                    To verify the effectiveness of the backward planning approach, we train conventional forward planners \( f(z_{t+k}|z_t,\phi_l) \) with the same network architecture for fair comparison. While our planners progressively predict subgoals \( z_{g}, w_1, w_2, \dots, w_n \) in a backward manner, the forward planner predict the subgoal 10 steps ahead. At each step, the forward planner autoregressively generates latent subgoals. We randomly sample 3000 data points as the current state from our real-robot datasets and compute the mean square errors (MSE) between predicted subgoals and their corresponding groundtruths. 
-                </p><br>
-                <img src="./assets/web/forward_error_2.png" alt="algebraic reasoning" class="center" style="width: 100%;">
-                <p style="text-align: left;">
-                    <i>Figure 5.</i> Mean Squared Errors (MSE) between predicted subgoals and corresponding ground truths in forward and backward planning.
-                </p>
-                <br>
-                <p style="text-align: left;">
-                    It can be observed that the compounding errors of forward planning grow rapidly across all tasks; for the most challenging task "Shift cups", the error becomes unbearable when predicting distant subgoals. 
-                    Even more concerning is that some existing methods attempt to predict continuous frames of future images, which would exacerbate these issues further.
-                    In contrast, our method maintains an extremely low error throughout the entire planning horizon. These results highlight the advantage of our backward planning strategy, which enables accurate subgoal predictions using only a few subgoals throughout the entire trajectory. LBP not only ensures efficient prediction but also effectively reduces compounding errors, in contrast to forward planning, which requires many predictions and suffers from significant accumulated errors.
-                <br>
-        </div>
             
         </div>
 
