@@ -129,7 +129,7 @@
                 <p style="text-align: left;">
                     To verify the effectiveness of the backward planning approach, we train conventional forward planners \( f(z_{t+k}|z_t,\phi_l) \) with the same network architecture for fair comparison. While our planners progressively predict subgoals \( z_{g}, w_1, w_2, \dots, w_n \) in a backward manner, the forward planner predict the subgoal 10 steps ahead. At each step, the forward planner autoregressively generates latent subgoals. We randomly sample 3000 data points as the current state from our real-robot datasets and compute the mean square errors (MSE) between predicted subgoals and their corresponding groundtruths. The results are visualized as follows, with normalized task progress on the x-axis.
                 </p><br>
-                <img src="./assets/web/forward_error_3.png" alt="algebraic reasoning" class="center" style="width: 100%;">
+                <img src="./assets/web/forward_error_4.png" alt="algebraic reasoning" class="center" style="width: 100%;">
                 <p style="text-align: left;">
                     <i>Figure 5.</i> Mean Squared Errors (MSE) between predicted subgoals and corresponding ground truths in forward and backward planning (ours).
                 </p>
