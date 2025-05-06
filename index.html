@@ -60,30 +60,35 @@
                     </h1>
                 
                     <div class="buttons is-centered">
-                        <a class="button custom-style" href="https://lbp-authors.github.io/" target="_blank">
-                            <span class="icon"><i class="fas fa-file-alt"></i></span>
-                            <span>arXiv</span>
-                        </a>
-                        <a class="button custom-style" href="https://openreview.net/pdf?id=BDBnw6L66T" target="_blank">
+                        <a class="button custom-style" href="https://openreview.net/pdf?id=BDBnw6L66T" target="_blank" style="width: 100px; text-align: center;">
                             <span class="icon"><i class="fas fa-file-pdf"></i></span>
                             <span>Paper</span>
                         </a>
-                        <a class="button custom-style" href="https://github.com/Dstate/LBP" target="_blank">
+                        <a class="button custom-style" href="https://openreview.net/pdf?id=BDBnw6L66T" target="_blank" style="width: 100px; text-align: center;">
+                            <span class="icon"><i class="fas fa-file-alt"></i></span>
+                            <span>arXiv</span>
+                        </a>
+                        <a class="button custom-style" href="https://github.com/Dstate/LBP" target="_blank" style="width: 100px; text-align: center;">
                             <span class="icon"><i class="fab fa-github"></i></span>
                             <span>Code</span>
                         </a>
                     </div>
 
                     <h3 class="subtitle is-4 is-bold">
-                        Dongxiu Liu<sup style="font-family: 'Times New Roman', serif;">*</sup><sup>1,2</sup>, 
-                        Haoyi Niu<sup style="font-family: 'Times New Roman', serif;">*†</sup><sup>1,3</sup>,
+                        Dongxiu Liu<sup>1,2</sup><sup style="font-family: 'Times New Roman', serif;">*</sup>, 
+                        Haoyi Niu<sup>1,3</sup><sup style="font-family: 'Times New Roman', serif;">*†</sup>,
                         Zhihao Wang<sup>1,4</sup>,
                         Jinliang Zheng<sup>1,5</sup>,
                         Yinan Zheng<sup>1</sup>,<br>
-                        Zhonghong Ou<sup style="font-family: 'Times New Roman', serif;">‡</sup><sup>2</sup>,
-                        Jianming Hu<sup style="font-family: 'Times New Roman', serif;">‡</sup><sup>1</sup>,
+                        Zhonghong Ou<sup>2</sup><sup style="font-family: 'Times New Roman', serif;">‡</sup>,
+                        Jianming Hu<sup>1</sup><sup style="font-family: 'Times New Roman', serif;">‡</sup>,
                         Jianxiong Li<sup>1</sup>,
-                        Xianyuan Zhan<sup style="font-family: 'Times New Roman', serif;">‡</sup><sup>1,5</sup>,
+                        Xianyuan Zhan<sup>1,5</sup><sup style="font-family: 'Times New Roman', serif;">‡</sup>
+                        <div class="contact" style="text-align: center; font-size: 14px; margin-top: 10px;">
+                            Contact us: 
+                            <a href="mailto:liudongxiu0504@gmail.com">liudongxiu0504@gmail.com</a> (Dongxiu), 
+                            <a href="mailto:t6.da.thu@gmail.com">t6.da.thu@gmail.com</a> (Haoyi)
+                        </div>
                     </h3>
                     <h3 class="subtitle is-6 is-bold">
                         <sup>1</sup> Tsinghua University<br>
@@ -95,7 +100,6 @@
                         <sup style="font-family: 'Times New Roman', serif;">†</sup> Project Lead
                         <sup style="font-family: 'Times New Roman', serif;">‡</sup> Corresponding Authors
                     </h3>
-
                     <div style="display: flex; justify-content: center; align-items: center; gap: 50px; margin-top: 30px; flex-wrap: wrap;">
                         <img src="./assets/web/logo/Tsinghua University logo.png" alt="Tsinghua University" style="height: 85px;">
                         <img src="./assets/web/logo/BUPT logo.png" alt="Beijing University of Posts and Telecommunications" style="height: 85px;">
@@ -103,6 +107,8 @@
                         <img src="./assets/web/logo/Peking University logo.png" alt="Peking University" style="height: 85px;">
                         <img src="./assets/web/logo/Shanghai AI Lab logo.png" alt="Shanghai AI Laboratory" style="height: 70px;">
                     </div>
+
+                    
 
                 </div>
         
@@ -155,7 +161,7 @@
                 
                 <div class="content has-text-justified">
                     <p>
-                        In the training phase, we learn a final goal predictor \( f_g \) with Eq.2, a unified subgoal predictor \( f_w \) with Eq.5, and a conditioned policy \( \pi \) with Eq.6.
+                        In the training phase, we learn a final goal predictor \( f_g \) with Eq.2, a unified subgoal predictor \( f_w \) with Eq.5, and a conditioned policy \( \pi \) with Eq.5.
                         At each step \( t \) at test time, LBP processes the current observation \( I_t \) and language instruction \( l \) into latent state \( z_t \) and language feature \( \phi_l \), 
                         and then generates latent (sub)goal plans \( \{w_n, \dots, w_2, w_1, z_g\} \) by \( f_g \) and \( f_w \).
                         Then we use the contexts \( c \), including predicted goal plans and language features \( \phi_l \), 
@@ -574,7 +580,79 @@
     .button.custom-style:hover {
         box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
     }
+    .contact a {
+        color: gray;              /* 默认黑色 */
+        text-decoration: underline;     /* 去掉下划线 */
+        font-weight: 500;          /* 适当加粗 */
+    }
 
+    .contact a:hover {
+        color: black;               /* 悬停时变灰 */
+        text-decoration: underline;/* 悬停加下划线（可选） */
+    }
+
+  </style>
+
+
+<section class="section">
+    <div class="container" style="margin-bottom: 2vh;">
+    <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+
+
+        <h3 style="text-align: center" class="title is-3"><u>Raw</u> videos of generalization expirements</h3>
+        <div class="column">
+            <h3 style="text-align: center" class="title is-4"><b>Different <u>backgrounds</u></b></h3>
+            <div class="content has-text-justified">
+            </div>
+                <video id="dollyzoom" autoplay controls muted loop playsinline width="32.5%" height="100%">
+                    <source src="./assets/web/real/background_0.mp4"
+                            type="video/mp4">
+                </video>
+                <video id="dollyzoom" autoplay controls muted loop playsinline width="32.5%" height="100%">
+                    <source src="./assets/web/real/background_2.mp4"
+                            type="video/mp4">
+                </video>
+                <video id="dollyzoom" autoplay controls muted loop playsinline width="32.5%" height="100%">
+                    <source src="./assets/web/real/background_1.mp4"
+                            type="video/mp4">
+                </video>
+            <br><br>
+            </div>
+      
+        <div class="column">
+            <h3 style="text-align: center" class="title is-4"><b>Unseen <u>distractors</u></b></h3>
+            <div class="content has-text-justified">
+            </div>
+                <video id="dollyzoom" autoplay controls muted loop playsinline width="32.5%" height="100%">
+                    <source src="./assets/web/real/distractor_0.mp4"
+                            type="video/mp4">
+                </video>
+                <video id="dollyzoom" autoplay controls muted loop playsinline width="32.5%" height="100%">
+                    <source src="./assets/web/real/distractor_2.mp4"
+                            type="video/mp4">
+                </video>
+                <video id="dollyzoom" autoplay controls muted loop playsinline width="32.5%" height="100%">
+                    <source src="./assets/web/real/distractor_1.mp4"
+                            type="video/mp4">
+                </video>
+            <br><br>
+        </div>
+            
+        </div>
+
+
+
+    </div>
+
+</div>
+</section>
+
+
+
+
+
+<style>
     .expandable-container {
         margin: 20px;
     }
