@@ -155,7 +155,7 @@
                 
                 <div class="content has-text-justified">
                     <p>
-                        In the training phase, we learn a final goal predictor \( f_g \) with Eq.2, a unified subgoal predictor \( f_w \) with Eq.5, and a conditioned policy \( \pi \) with Eq.5.
+                        In the training phase, we learn a final goal predictor \( f_g \) with Eq.2, a unified subgoal predictor \( f_w \) with Eq.5, and a conditioned policy \( \pi \) with Eq.6.
                         At each step \( t \) at test time, LBP processes the current observation \( I_t \) and language instruction \( l \) into latent state \( z_t \) and language feature \( \phi_l \), 
                         and then generates latent (sub)goal plans \( \{w_n, \dots, w_2, w_1, z_g\} \) by \( f_g \) and \( f_w \).
                         Then we use the contexts \( c \), including predicted goal plans and language features \( \phi_l \), 
